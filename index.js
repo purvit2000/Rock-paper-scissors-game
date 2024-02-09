@@ -1,4 +1,5 @@
 function computerPlay(){
+    console.log('called')
     let a = Math.floor((Math.random() * 3) + 1 );
     let choice;
     switch(a){
@@ -15,78 +16,93 @@ function computerPlay(){
     }
     return choice;
 }
-function player(){
-    let choice = prompt("Enter rock, paper or scissors");
-   return choice.toLowerCase(); 
-}
+// function player(){
+//    const selection = document.querySelector('.choice');
+//    selection.addEventListener('click', () => {
+//         return rock;
+//    });
+
+// }
 
 function playRound(playerSelection, computerSelection) {
-    
+    const result = document.querySelector('#result');
     if (playerSelection === "rock" && computerSelection === "paper"){
-        alert("You Lose! Paper beats Rock");
+        result.innerHTML = "You Lose! Paper beats Rock";
         return "l";
     }
     else if (playerSelection === "rock" && computerSelection === "scissors"){
-        alert("You win! Rock beats Scissors");
+        result.innerHTML = "You win! Rock beats Scissors";
         return "w";
     }
     else if (playerSelection === "rock" && computerSelection === "rock"){
-        alert("It's a tie!");
+        result.innerHTML = "It's a tie!";
         return "t";
     }
     else if (playerSelection === "paper" && computerSelection === "rock"){
-        alert("You Win! Paper beats Rock");
+        result.innerHTML = "You Win! Paper beats Rock";
         return "w";
     }
     else if (playerSelection === "paper" && computerSelection === "scissors"){
-        alert("You Lose! Scissors beats Paper");
+        result.innerHTML = "You Lose! Scissors beats Paper";
         return "l";
     }
     else if (playerSelection === "paper" && computerSelection === "paper"){
-        alert("It's a tie!");
+        result.innerHTML = "It's a tie!";
         return "t";
     }
     else if (playerSelection === "scissors" && computerSelection === "paper"){
-        alert("You Win! Srissors beats Paper");
+        result.innerHTML = "You Win! Srissors beats Paper";
         return "w";
     }
     else if (playerSelection === "scissors" && computerSelection === "rock"){
-        alert("You Lose! Rock beats Scissors");
+        result.innerHTML = "You Lose! Rock beats Scissors";
         return "l";
     }
     else if (playerSelection === "scissors" && computerSelection === "scissors"){
-        alert("It's a tie!");
+        result.innerHTML = "It's a tie!";
         return "t";
     }
     else{
-        alert("Enter Correctly!");
-        
-    }
+        result.innerHTML = "Enter Correctly!";
+    }  
     
 }
 
 function game(){
+    
+    
     let pscore = 0, cscore = 0, tie = 0;
-    let chances = prompt("How many time do you want to play.");
-    chances = Number.parseInt(chances)
-    for (let i = 0; i < chances; i++) {
         
-        const playerSelection = player();
-        const computerSelection = computerPlay();
-        let result = playRound(playerSelection, computerSelection);
-        if (result === "w"){
-            ++pscore;
-        }
-        else if (result === "l"){
-            ++cscore;
-        }
-        else if (result === "t"){
-            ++tie
-        }
-     }
-    alert(`The Score is:-
-    Player = ${pscore}
-    computer = ${cscore}
-    tie = ${tie}`);
+    const selection = document.querySelectorAll('.choice');
+        selection.forEach(button => {
+
+            button.addEventListener('click', (e) => {
+            
+            const playerSelection = e.target.id;
+            const computerSelection = computerPlay();
+            let result = playRound(playerSelection, computerSelection);
+            if (result === "w"){
+                ++pscore;
+            }
+            else if (result === "l"){
+                ++cscore;
+            }
+            else if (result === "t"){
+                ++tie
+            }
+            const results = document.querySelector('#score');
+            results.innerHTML = `
+            Player = ${pscore} 
+            computer = ${cscore}
+            tie = ${tie}`;
+           });
+            
+        });
+        
+     
+    // alert(`The Score is:-
+    // Player = ${pscore}
+    // computer = ${cscore}
+    // tie = ${tie}`);
 }
 game();
