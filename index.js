@@ -67,8 +67,9 @@ function playRound(playerSelection, computerSelection) {
 
 function game(){
     let pscore = 0, cscore = 0, tie = 0;
-    
-    for (let i = 0; i < 5; i++) {
+    let chances = prompt("How many time do you want to play.");
+    chances = Number.parseInt(chances)
+    for (let i = 0; i < chances; i++) {
         
         const playerSelection = player();
         const computerSelection = computerPlay();
