@@ -1,5 +1,5 @@
 function computerPlay(){
-    console.log('called')
+    
     let a = Math.floor((Math.random() * 3) + 1 );
     let choice;
     switch(a){
@@ -90,19 +90,18 @@ function game(){
             else if (result === "t"){
                 ++tie
             }
-            const results = document.querySelector('#score');
-            results.innerHTML = `
-            Player = ${pscore} 
-            computer = ${cscore}
-            tie = ${tie}`;
+            const resultsP = document.querySelector('#scoreP');
+            const resultsT = document.querySelector('#scoreT');
+
+            const resultsC = document.querySelector('#scoreC');
+
+            resultsP.innerHTML = `${pscore}`;
+            resultsT.innerHTML = `${tie}`;
+            resultsC.innerHTML = `${cscore}`;
+
            });
             
         });
         
-     
-    // alert(`The Score is:-
-    // Player = ${pscore}
-    // computer = ${cscore}
-    // tie = ${tie}`);
 }
 game();
